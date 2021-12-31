@@ -3,10 +3,8 @@ public class HidingRoom extends NormalLoc{
         super(player, "Hiding Room");
     }
 
+    @Override
     public boolean getLocation() {
-        getPlayer().setHealthy(getPlayer().getrHealthy());
-        System.out.println("Your health is healed");
-        System.out.println("You are in the "+ this.getName());
-        return true;
+        return super.getLocation();
     }
 }

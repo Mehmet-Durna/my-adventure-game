@@ -6,6 +6,7 @@ public class ToolStore extends NormalLoc {
 	}
 
 	public boolean getLocation() {
+		System.out.println("You are in the "+ this.getName());
 		System.out.println("Balance : " + getPlayer().getMoney());
 		System.out.println("1. Weapons");
 		System.out.println("2. Armors");

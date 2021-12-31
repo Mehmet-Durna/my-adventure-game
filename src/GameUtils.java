@@ -3,6 +3,23 @@ import java.util.Random;
 public class GameUtils {
 
 
+    public static Item getElixer() {
+        Item elixer = new Item("Elixer", "Special", 0, 0);
+        return elixer;
+    }public static Item getWing() {
+        Item wing = new Item("Wing", "Special", 0, 0);
+        return wing;
+    }public static Item getSanta() {
+        Item santa = new Item("Santa", "Special", 0, 0);
+        return santa;
+    }public static Item getExcalibur() {
+        Item excalibur = new Item("Excalibur", "Special", 0, 0);
+        return excalibur;
+    }public static Item getStaf() {
+        Item staf = new Item("Staf", "Special", 0, 0);
+        return staf;
+    }
+
     public static Item getGun() {
         Item gun = new Item("Gun", "Weapon", 2, 0);
         return gun;
@@ -18,15 +35,7 @@ public class GameUtils {
         return axe;
     }
 
-    public static Item getSpike() {
-        Item spike = new Item("Spike", "Weapon", 8, 0);
-        return spike;
-    }
 
-    public static Item getWoodArmor() {
-        Item woodArmor = new Item("\tWood Armor", "Armor", 0, 3);
-        return woodArmor;
-    }
 
     public static Item getNinjaArmor() {
         Item ninjaArmor = new Item("\tNinja Armor", "Armor", 0, 5);
@@ -44,14 +53,14 @@ public class GameUtils {
 
         Location cave = new BattleLoc(player, "Cave", getZombie(), getGun());
         Location forest = new BattleLoc(player, "Forest", getWolf(), getAxe());
-        Location finalRoom = new BattleLoc(player, "Final Room", getBoss(), getKnightArmor());
-        Location cemetery = new BattleLoc(player, "Cemetery", getSkeleton(), getWoodArmor());
-        Location vampireTown = new BattleLoc(player, "Vampire Town", getVampire(), getSpike());
+        Location finalRoom = new BattleLoc(player, "Final Room", getBoss(), getExcalibur());
+        Location cemetery = new BattleLoc(player, "Cemetery", getSkeleton(), getStaf());
+        Location vampireTown = new BattleLoc(player, "Vampire Town", getVampire(), getKatana());
         Location tigerMountain = new BattleLoc(player, "Tiger Mountain", getTiger(), getNinjaArmor());
-        Location valley = new BattleLoc(player, "Valley", getSnake(), getSpike());
+        Location valley = new BattleLoc(player, "Valley", getSnake(), getElixer());
         Location bonusRoom1 = new BattleLoc(player, "Bonus Room1", getTiger(), getKnightArmor());
-        Location bonusRoom2 = new BattleLoc(player, "Bonus Room2", getVampire(), getGun());
-        Location bonusRoom3 = new BattleLoc(player, "Bonus Room3", getSnake(), getSpike());
+        Location bonusRoom2 = new BattleLoc(player, "Bonus Room2", getVampire(), getSanta());
+        Location bonusRoom3 = new BattleLoc(player, "Bonus Room3", getSnake(), getWing());
 
         Location toolStore = new ToolStore(player);
         Location hidingRoom = new HidingRoom(player);

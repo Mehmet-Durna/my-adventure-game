@@ -5,11 +5,14 @@ public abstract class NormalLoc extends Location{
 		super(player,name);
 
 	}
-	
+
 
 	public boolean getLocation() {
+		getPlayer().setHealthy(getPlayer().getrHealthy());
+		System.out.println("Your are healed");
+		System.out.println("You are in the "+ this.getName());
 		return true;
 	}
-	
-	
+
+
 }
