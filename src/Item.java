@@ -1,14 +1,19 @@
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
+import java.util.Scanner;
 
 public class Item {
     private String itemName, itemType;
-    private int damage,block;
+    private int damage, block;
+    private double weight;
 
-    public Item(String itemName, String itemType, int damage, int block) {
+    public Item(String itemName, String itemType, int damage, int block, double weight) {
         this.itemName = itemName;
         this.itemType = itemType;
         this.damage = damage;
         this.block = block;
+        this.weight = weight;
     }
 
     public String getItemName() {
@@ -51,8 +56,18 @@ public class Item {
         return itemName.equals(item.itemName);
     }
 
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(itemName);
     }
+
+
 }

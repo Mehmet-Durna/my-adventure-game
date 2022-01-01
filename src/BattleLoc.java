@@ -22,9 +22,9 @@ public class BattleLoc extends Location {
             if (selCase.equals("F")) {
                 if (combat(obsCount)) {
                     System.out.println("You killed all the monsters in the " + this.getName());
-                    getPlayer().addBag(getDropItem());
-                    System.out.println( getDropItem().getItemName() + " is added to your bag");
-
+                    System.out.println("You find a "+ getDropItem().getItemName() + "\n Dou you want to add it to your bag? ");
+                    System.out.println("Yes or No");
+                    itemDecision();
                     return true;
                 }
             }
@@ -43,7 +43,6 @@ public class BattleLoc extends Location {
 
         }
 
-//        getLocation();
         return true;
     }
 
@@ -90,6 +89,25 @@ public class BattleLoc extends Location {
     }
 
 
+public void itemDecision(){
+    String choice = scan.nextLine();
+    choice.toLowerCase();
+    if (choice.equals("yes")){
+        if (getPlayer().getBagCurrentWeight()+getDropItem().getWeight()<=getPlayer().getBagCapacity()){
+            getPlayer().addBag(getDropItem());
+            System.out.println( getDropItem().getItemName() + " is added to your bag");
+        }
+        else{
+            System.out.println("Not enough space in the bag!");
+        }
+
+
+    }else if (!choice.equals("no")){
+        System.out.println("Not valid entry");
+        itemDecision();
+    }
+
+}
 
     public void enemyStats() {
         System.out.println("\n" + obstacle.getName() + " Stats\n--------------");

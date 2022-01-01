@@ -1,51 +1,51 @@
-import java.util.Random;
+
 
 public class GameUtils {
+    Game game = new Game();
 
 
     public static Item getElixer() {
-        Item elixer = new Item("Elixer", "Special", 0, 0);
-        return elixer;
-    }public static Item getWing() {
-        Item wing = new Item("Wing", "Special", 0, 0);
-        return wing;
-    }public static Item getSanta() {
-        Item santa = new Item("Santa", "Special", 0, 0);
-        return santa;
-    }public static Item getExcalibur() {
-        Item excalibur = new Item("Excalibur", "Special", 0, 0);
-        return excalibur;
-    }public static Item getStaf() {
-        Item staf = new Item("Staf", "Special", 0, 0);
-        return staf;
+        return new Item("Elixer", "Special", 0, 0, 0);
+    }
+
+    public static Item getWing() {
+        return new Item("Wing", "Special", 0, 0, 0);
+    }
+
+    public static Item getSanta() {
+        return new Item("Santa", "Special", 0, 0, 0);
+    }
+
+    public static Item getExcalibur() {
+        return new Item("Excalibur", "Special", 0, 0, 0);
+    }
+
+    public static Item getStaf() {
+        return new Item("Staf", "Special", 0, 0, 0);
     }
 
     public static Item getGun() {
-        Item gun = new Item("Gun", "Weapon", 2, 0);
-        return gun;
+        return new Item("Gun", "Weapon", 2, 0, 1.2);
     }
 
     public static Item getKatana() {
-        Item katana = new Item("Katana", "Weapon", 4, 0);
-        return katana;
+        return new Item("Katana", "Weapon", 4, 0, 1.5);
     }
 
     public static Item getAxe() {
-        Item axe = new Item("Axe", "Weapon", 6, 0);
-        return axe;
+        return new Item("Axe", "Weapon", 6, 0, 2);
     }
-
 
 
     public static Item getNinjaArmor() {
-        Item ninjaArmor = new Item("\tNinja Armor", "Armor", 0, 5);
-        return ninjaArmor;
+        return new Item("\tNinja Armor", "Armor", 0, 5, 3);
     }
 
     public static Item getKnightArmor() {
-        Item knightArmor = new Item("\tKnight Armor", "Armor", 0, 7);
-        return knightArmor;
+        return new Item("\tKnight Armor", "Armor", 0, 7, 3);
     }
+
+
 
 
     public static void createMap(Player player) {
@@ -129,44 +129,36 @@ public class GameUtils {
     public static int getAward() {
 
 
-        return (int)(Math.random()*13)+3;
+        return (int) (Math.random() * 13) + 3;
     }
-
 
 
     public static Obstacle getTiger() {
-        Obstacle tiger = new Obstacle("Tiger", 8, 20, getAward(), 3);
-        return tiger;
+        return new Obstacle("Tiger", 8, 20, getAward(), 3);
     }
 
     public static Obstacle getVampire() {
-        Obstacle vampire = new Obstacle("Vampire", 10, 25, getAward(), 3);
-        return vampire;
+        return new Obstacle("Vampire", 10, 25, getAward(), 3);
     }
 
     public static Obstacle getWolf() {
-        Obstacle wolf = new Obstacle("Wolf", 5, 13, getAward(), 3);
-        return wolf;
+        return new Obstacle("Wolf", 5, 13, getAward(), 3);
     }
 
     public static Obstacle getZombie() {
-        Obstacle zombie = new Obstacle("Zombie", 7, 16, getAward(), 3);
-        return zombie;
+        return new Obstacle("Zombie", 7, 16, getAward(), 3);
     }
 
     public static Obstacle getSkeleton() {
-        Obstacle skeleton = new Obstacle("Skeleton", 8, 20, getAward(), 3);
-        return skeleton;
+        return new Obstacle("Skeleton", 8, 20, getAward(), 3);
     }
 
     public static Obstacle getSnake() {
-        Obstacle snake = new Obstacle("Snake", 6, 14, getAward(), 3);
-        return snake;
+        return new Obstacle("Snake", 6, 14, getAward(), 3);
     }
 
     public static Obstacle getBoss() {
-        Obstacle boss = new Obstacle("Boss", 20, 40, getAward(), 2);
-        return boss;
+        return new Obstacle("Boss", 20, 40, getAward(), 2);
     }
 
 

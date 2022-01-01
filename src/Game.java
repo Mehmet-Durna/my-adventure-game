@@ -1,6 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class Game {
     Player player;
@@ -58,38 +56,8 @@ public class Game {
 
 
                 if (selLoc.equals("look")) {
-                    if (player.getBag().isEmpty()) {
-                        System.out.println("Bag is empty");
-                    } else
-                        System.out.println("-------------Bag List -------------");
-                    System.out.println("0. Quit");
+                    look();
 
-                    for (int i = 0; i < player.getBag().size(); i++) {
-                        System.out.print((i + 1) + ". " + player.getBag().get(i).getItemName() + "\n");
-                    }
-
-                    System.out.println("Enter the number of item you want to equip ! ");
-
-                    Scanner scanner = new Scanner(System.in);
-                    int number = scanner.nextInt();
-
-                    try {
-                        if (player.getBag().get(number - 1).getItemType().equals("Armor")) {
-                            player.setCurrentArmor(player.getBag().get(number - 1));
-                        }  else if (player.getBag().get(number - 1).getItemType().equals("Weapon")){
-                            player.setCurrentWeapon(player.getBag().get(number - 1));
-                        }else{
-                            System.out.println("You can not equip special items");
-                        }
-                    }catch (Exception e ){
-                        System.out.println("Exiting inventory...");
-                    }
-
-
-                    System.out.println("Your current weapon is " + player.getCurrentWeapon().getItemName());
-                    System.out.println("Your current armor is " + player.getCurrentArmor().getItemName());
-
-                    System.out.println("\n\n-----------------------------------");
                     for (String direction : exits.keySet()) {
                         System.out.println("Go to " + exits.get(direction).getName());
                     }
@@ -110,5 +78,61 @@ public class Game {
             }
 
         }
+    }
+
+    public void look() {
+        if (player.getBag().isEmpty()) {
+            System.out.println("Bag is empty");
+        } else
+            System.out.println("-------------Bag List -------------");
+        System.out.println("0. Quit");
+
+        for (int i = 0; i < player.getBag().size(); i++) {
+            System.out.print((i + 1) + ". " + player.getBag().get(i).getItemName() + "\n");
+        }
+        System.out.println("Bag current weight: " + player.getBagCurrentWeight() + "/"+player.getBagCapacity());
+        System.out.println("Enter the number of item you want to equip ! ");
+
+        Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+
+
+
+        if (number == 0) {
+            System.out.println("Exiting inventory");
+        } else {
+            Item item = (player.getBag().get(number - 1));
+
+            if (item.getItemType().equals("Armor")) {
+                player.getBag().add(player.getCurrentArmor());
+                player.setCurrentArmor(item);
+                player.getBag().remove(player.getCurrentArmor());
+            } else if (item.getItemType().equals("Weapon")) {
+                player.getBag().add(player.getCurrentWeapon());
+                player.setCurrentWeapon(item);
+                player.getBag().remove(player.getCurrentWeapon());
+
+            } else if (item.getItemType().equals("Potion")) {
+                if (item.getItemName().equals("Health Potion")) {
+                    player.setHealthy(player.getrHealthy());
+                } else {
+                    player.setDamage(player.getDamage() + 6);
+                }
+            } else {
+                System.out.println("You can not equip special items");
+            }
+        }
+
+        System.out.println("Your current weapon is " + player.getCurrentWeapon().getItemName());
+        System.out.println("Your current armor is " + player.getCurrentArmor().getItemName());
+
+        System.out.println("\n\n-----------------------------------");
+    }
+
+    public Item getItems() {
+        ArrayList<Item> items = new ArrayList<>();
+        Random rand = new Random();
+        items.add(GameUtils.getNinjaArmor());
+        return items.get(rand.nextInt(items.size()));
     }
 }

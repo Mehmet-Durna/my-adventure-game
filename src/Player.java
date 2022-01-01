@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Player {
-    private int damage, healthy, money, rHealthy;
+    private int damage, healthy, money, rHealthy,bagCapacity;
     private String name, cName;
     private Location currentLocation;
     Scanner scan = new Scanner(System.in);
@@ -12,15 +12,25 @@ public class Player {
     private Item currentArmor;
 
 
+
+
     public Player(String name) {
         this.name = name;
         bag = new ArrayList<>();
-        currentArmor = new Item("tshirt", "armor", 0, 1);
-        currentWeapon = new Item("Stick", "Weapon", 1, 0);
+        bagCapacity = 10;
+        currentArmor = new Item("tshirt", "armor", 0, 1,1);
+        currentWeapon = new Item("Stick", "Weapon", 1, 0,0.5);
     }
 
     public ArrayList<Item> getBag() {
         return bag;
+    }
+    public int getBagCapacity() {
+        return bagCapacity;
+    }
+
+    public void setBagCapacity(int bagCapacity) {
+        this.bagCapacity = bagCapacity;
     }
 
     public void addBag(Item item) {
@@ -173,5 +183,13 @@ public class Player {
         if (getCurrentArmor().getBlock() > 0) {
             System.out.println("Armor:" + getCurrentArmor().getItemName());
         }
+    }
+
+    public double getBagCurrentWeight(){
+        double weight =0;
+        for (Item item : bag){
+            weight += item.getWeight();
+        }
+        return weight;
     }
 }
