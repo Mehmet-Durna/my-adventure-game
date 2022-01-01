@@ -31,48 +31,35 @@ public class Game {
                 break;
             }
 
-            Location current = player.getCurrentLocation();
-            HashMap<String, Location> exits = current.getExits();
-
-
+            HashMap<String, Location> exits = player.getCurrentLocation().getExits();
             System.out.println("\n=================================================\n");
-
-
             player.playerStats();
             System.out.println("\n\n");
-            System.out.println("What is your next move: ");
-            for (String direction : exits.keySet()) {
-                System.out.println("Go to " + exits.get(direction).getName());
-            }
-
-            System.out.println("<Look> what you have in your bag");
-
+            System.out.println("Available Locations: ");
+            menu();
             System.out.print("Your decision is: ");
             String selLoc = scan.nextLine();
             selLoc = selLoc.replaceAll("\\s", "").toLowerCase();
 
 
-            while (!exits.containsKey(selLoc)) {
-
+            while (!exits.containsKey(selLoc) && !selLoc.equals("back")) {
 
                 if (selLoc.equals("look")) {
                     look();
-
-                    for (String direction : exits.keySet()) {
-                        System.out.println("Go to " + exits.get(direction).getName());
-                    }
-                    System.out.println("<Look> what you have in your bag");
+                    menu();
                 } else
                     System.out.print("Please enter a valid location name : ");
                 selLoc = scan.nextLine();
             }
+            if (selLoc.equals("back")) {
+                player.setCurrentLocation(player.getPreviousLocation());
+            } else {
+                player.setPreviousLocation(player.getCurrentLocation());
+                player.setCurrentLocation(exits.get(selLoc));
+            }
 
 
-            Location currentLocation = exits.get(selLoc);
-            player.setCurrentLocation(currentLocation);
-
-
-            if (!currentLocation.getLocation()) {
+            if (!player.getCurrentLocation().getLocation()) {
                 System.out.println("Game over !");
                 break;
             }
@@ -90,12 +77,11 @@ public class Game {
         for (int i = 0; i < player.getBag().size(); i++) {
             System.out.print((i + 1) + ". " + player.getBag().get(i).getItemName() + "\n");
         }
-        System.out.println("Bag current weight: " + player.getBagCurrentWeight() + "/"+player.getBagCapacity());
+        System.out.println("Bag current weight: " + player.getBagCurrentWeight() + "/" + player.getBagCapacity());
         System.out.println("Enter the number of item you want to equip ! ");
 
         Scanner scanner = new Scanner(System.in);
         int number = scanner.nextInt();
-
 
 
         if (number == 0) {
@@ -129,10 +115,17 @@ public class Game {
         System.out.println("\n\n-----------------------------------");
     }
 
-    public Item getItems() {
-        ArrayList<Item> items = new ArrayList<>();
-        Random rand = new Random();
-        items.add(GameUtils.getNinjaArmor());
-        return items.get(rand.nextInt(items.size()));
+    public void menu() {
+
+        Location currentLocation = player.getCurrentLocation();
+        HashMap<String, Location> exits = currentLocation.getExits();
+        for (String direction : exits.keySet()) {
+            System.out.println("Go to " + exits.get(direction).getName());
+        }
+
+        System.out.println("<Look> what you have in your bag");
+        System.out.println("Back");
     }
+
+
 }

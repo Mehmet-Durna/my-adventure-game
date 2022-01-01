@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class Player {
     private int damage, healthy, money, rHealthy,bagCapacity;
     private String name, cName;
-    private Location currentLocation;
+    private Location currentLocation,previousLocation;
     Scanner scan = new Scanner(System.in);
     private ArrayList<Item> bag;
     private Item currentWeapon;
     private Item currentArmor;
-
 
 
 
@@ -51,7 +50,7 @@ public class Player {
                 initPlayer("Archer", 7, 18, 20);
                 break;
             case 3:
-                initPlayer("Knight", 80, 24, 5);
+                initPlayer("Knight", 8, 24, 5);
                 break;
             default:
                 initPlayer("Samurai", 5, 21, 15);
@@ -170,6 +169,14 @@ public class Player {
 
     public void setCurrentArmor(Item currentArmor) {
         this.currentArmor = currentArmor;
+    }
+
+    public Location getPreviousLocation() {
+        return previousLocation;
+    }
+
+    public void setPreviousLocation(Location previousLocation) {
+        this.previousLocation = previousLocation;
     }
 
     public void playerStats() {

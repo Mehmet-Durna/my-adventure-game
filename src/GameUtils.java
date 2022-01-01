@@ -67,6 +67,7 @@ public class GameUtils {
         Location safeHouse = new SafeHouse(player);
 
         player.setCurrentLocation(safeHouse);
+        player.setPreviousLocation(toolStore);
 
         safeHouse.putExit("forest", forest);
         safeHouse.putExit("store", toolStore);
