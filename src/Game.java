@@ -40,6 +40,7 @@ public class Game {
             System.out.print("Your decision is: ");
             String selLoc = scan.nextLine();
             selLoc = selLoc.replaceAll("\\s", "").toLowerCase();
+            Location temp;
 
 
             while (!exits.containsKey(selLoc) && !selLoc.equals("back")) {
@@ -52,7 +53,10 @@ public class Game {
                 selLoc = scan.nextLine();
             }
             if (selLoc.equals("back")) {
-                player.setCurrentLocation(player.getPreviousLocation());
+                temp = player.getPreviousLocation();
+                player.setPreviousLocation(player.getCurrentLocation());
+                player.setCurrentLocation(temp);
+
             } else {
                 player.setPreviousLocation(player.getCurrentLocation());
                 player.setCurrentLocation(exits.get(selLoc));
